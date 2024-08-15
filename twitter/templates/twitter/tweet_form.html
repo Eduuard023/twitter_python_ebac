@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    {% if tweet.pk %}
+        Editar Tweet
+    {% else %}
+        Novo Tweet
+    {% endif %}
+{% endblock page_title %}
+
+{% block content %}
+    {% if tweet.pk %}
+        <h1>Editar Tweet</h1>
+    {% else %}
+        <h1>Novo Tweet</h1>
+    {% endif %}
+
+    {% if form %}
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            
+            <button type="submit" class="btn btn-primary">Postar</button>
+            <a class="btn btn-danger sm" href="{% url "tweet_list" %}">Cancelar</a>
+        </form>
+    {% endif %}
+{% endblock content %}
